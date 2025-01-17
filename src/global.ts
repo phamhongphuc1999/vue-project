@@ -1,4 +1,5 @@
 export type ThemeMode = 'dark' | 'light'
+export type LanguageType = 'en' | 'vi'
 
 export interface Supplier {
   id: number
