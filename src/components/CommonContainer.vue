@@ -6,7 +6,7 @@ defineProps({ msg: String })
   <div
     v-bind="{
       ...$attrs,
-      class: `${$attrs.class || ''} container mx-auto max-w-[45rem] px-[1rem] sm:max-w-[90rem]`,
+      class: `${$attrs.class || ''} container mx-auto px-[1rem]`,
     }"
   >
     <slot></slot>

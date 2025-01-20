@@ -1,3 +1,9 @@
+<script lang="ts" setup>
+import CommonContainer from '../CommonContainer.vue'
+</script>
+
 <template>
-  <div>My Vue App</div>
+  <CommonContainer>
+    <div>My Vue App</div>
+  </CommonContainer>
 </template>

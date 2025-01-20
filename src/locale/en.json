@@ -1,0 +1,11 @@
+{
+  "page": {
+    "home": "Home",
+    "about": "About",
+    "config": "Config"
+  },
+  "language": {
+    "en": "English",
+    "vi": "Vietnamese"
+  }
+}

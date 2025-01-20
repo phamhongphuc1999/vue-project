@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
@@ -13,35 +14,23 @@ const config: Config = {
     },
     extend: {
       colors: {
-        grey: {
-          50: 'var(--background-paper)',
-          100: 'var(--secondary-main)',
-        },
-        black: {
-          50: 'var(--text-primary)',
-          100: 'var(--very-contrast)',
-          150: 'var(--background-default)',
-          200: 'var(--background-primary)',
-          250: 'var(--background-secondary)',
-          300: 'var(--very-contrast)',
-        },
-        blue: {
-          50: 'var(--primary-main)',
-          100: 'var(--primary-light)',
-        },
-        green: {
-          50: 'var(--success)',
-        },
-        yellow: {
-          50: 'var(--warning)',
-        },
-        red: {
-          50: 'var(--error)',
+        gray: {
+          0: 'var(--gray-0)',
+          50: 'var(--gray-50)',
+          100: 'var(--gray-100)',
+          200: 'var(--gray-200)',
+          300: 'var(--gray-300)',
+          400: 'var(--gray-400)',
+          500: 'var(--gray-500)',
+          600: 'var(--gray-600)',
+          700: 'var(--gray-700)',
+          800: 'var(--gray-800)',
+          900: 'var(--gray-900)',
         },
       },
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-primeui')],
 }
 
 export default config

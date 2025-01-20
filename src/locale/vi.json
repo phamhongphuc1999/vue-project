@@ -1,0 +1,11 @@
+{
+  "page": {
+    "home": "Trang chủ",
+    "about": "Thông tin",
+    "config": "Cài đặt"
+  },
+  "language": {
+    "en": "Tiếng Anh",
+    "vi": "Tiếng Việt"
+  }
+}

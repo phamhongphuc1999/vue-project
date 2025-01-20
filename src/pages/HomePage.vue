@@ -1,15 +1,10 @@
 <script setup lang="ts">
+import useLocalTranslate from '@/hooks/useLocalTranslate'
 import Breadcrumb from 'primevue/breadcrumb'
+
+const { t } = useLocalTranslate()
 </script>
 
 <template>
-  <Breadcrumb
-    :model="[
-      { label: 'Electronics' },
-      { label: 'Computer' },
-      { label: 'Accessories' },
-      { label: 'Keyboard' },
-      { label: 'Wireless' },
-    ]"
-  />
+  <Breadcrumb :model="[{ label: t('page.home') }]" />
 </template>
