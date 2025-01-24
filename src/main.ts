@@ -1,11 +1,11 @@
-import './styles/main.css'
-
 import { createPinia } from 'pinia'
+import 'primeicons/primeicons.css'
 import PrimeVue from 'primevue/config'
 import { createApp } from 'vue'
 import App from './App.vue'
 import AppThemePresent from './configs/theme-config'
 import router from './router'
+import './styles/main.css'
 
 const app = createApp(App)
 

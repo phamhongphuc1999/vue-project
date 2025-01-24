@@ -19,3 +19,10 @@ export interface Product {
   createAt: string
   updateAt: string
 }
+
+export type LayoutType = {
+  id: string
+  title: string
+  icon: string
+  link: string
+}

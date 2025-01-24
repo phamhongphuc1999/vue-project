@@ -1,11 +1,15 @@
 {
   "page": {
     "home": "Trang chủ",
-    "about": "Thông tin",
+    "word": "Chữ",
     "config": "Cài đặt"
   },
   "language": {
     "en": "Tiếng Anh",
     "vi": "Tiếng Việt"
+  },
+  "theme": {
+    "light": "Sáng",
+    "dark": "Tối"
   }
 }

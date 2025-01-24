@@ -2,13 +2,21 @@
 import ThemeButton from '@/components/Button/ThemeButton.vue'
 import LanguageSelect from '@/components/Select/LanguageSelect.vue'
 import useLocalTranslate from '@/hooks/useLocalTranslate'
+import useConfigStore from '@/stores/config-store'
 import Breadcrumb from 'primevue/breadcrumb'
 
 const { t } = useLocalTranslate()
+const config = useConfigStore()
 </script>
 
 <template>
   <Breadcrumb :model="[{ label: t('page.config') }]" />
-  <ThemeButton />
-  <LanguageSelect />
+  <div class="flex gap-2">
+    <ThemeButton />
+    <p>{{ t(`theme.${config.themeMode}`) }}</p>
+  </div>
+  <div class="mt-[16px] flex items-center gap-4">
+    <LanguageSelect />
+    <p>{{ t(`language.${config.language}`) }}</p>
+  </div>
 </template>

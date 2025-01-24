@@ -6,5 +6,5 @@ const { t } = useLocalTranslate()
 </script>
 
 <template>
-  <Breadcrumb :model="[{ label: t('page.about') }]" />
+  <Breadcrumb :model="[{ label: t('page.word') }]" />
 </template>

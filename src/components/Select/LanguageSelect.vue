@@ -17,7 +17,12 @@ function onLanguageChange(event: SelectChangeEvent) {
 </script>
 
 <template>
-  <div class="flex justify-center">
+  <div
+    v-bind="{
+      ...$attrs,
+      class: `${$attrs.class || ''} flex justify-center`,
+    }"
+  >
     <Select
       v-on:change="onLanguageChange"
       v-model="selectedLan"

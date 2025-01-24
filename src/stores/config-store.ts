@@ -11,7 +11,6 @@ const useConfigStore = defineStore('config', {
     initLocalStorage(params?: Partial<{ themeMode: ThemeMode; language: LanguageType }>) {
       const initialThemeMode = params?.themeMode ?? 'dark'
       const initialLanguage = params?.language ?? 'en'
-      console.log('initialLanguage', initialLanguage)
       this.themeMode = initialThemeMode
       this.language = initialLanguage
       if (initialThemeMode == 'dark') document.documentElement.classList.add('vue-app-theme')

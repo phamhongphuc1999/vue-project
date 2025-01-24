@@ -1,11 +1,15 @@
 {
   "page": {
     "home": "Home",
-    "about": "About",
+    "word": "Word",
     "config": "Config"
   },
   "language": {
     "en": "English",
     "vi": "Vietnamese"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark"
   }
 }
