@@ -50,3 +50,9 @@
     background-color: var(--p-neutral-950);
   }
 }
+
+.pair-input {
+  padding: 0.25rem;
+  color: #000000;
+  background-color: #ffffff;
+}

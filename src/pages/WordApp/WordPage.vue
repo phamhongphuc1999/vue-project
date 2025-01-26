@@ -21,5 +21,9 @@ watchEffect(async () => {
 
 <template>
   <Breadcrumb :model="[{ label: t('page.word') }]" />
+  <p>
+    The language switching feature is disabled in WordApp, instead, the language is showed English
+    automatically
+  </p>
   <CategoryView />
 </template>

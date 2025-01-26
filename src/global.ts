@@ -28,6 +28,14 @@ export type LayoutType = {
   link: string
 }
 
+export type CheckDataType = {
+  numberOfErrors: number
+  numberOfRemaining: number
+  detail: { [id: number]: boolean }
+  description: string
+  isOk: boolean
+}
+
 /*word types*/
 export interface CategoryType {
   id: number
