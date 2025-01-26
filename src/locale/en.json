@@ -11,5 +11,7 @@
   "theme": {
     "light": "Light",
     "dark": "Dark"
-  }
+  },
+  "username": "Username",
+  "password": "Password"
 }

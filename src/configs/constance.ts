@@ -1,6 +1,7 @@
 export const LS = {
   THEME: 'theme',
   LANGUAGE: 'la',
+  ACCESS_TOKEN: 'accessToken',
 }
 
-export const INVENTORY_URL = 'http://localhost:9092/inventory'
+export const WORD_APP_URL = 'http://localhost:9090'

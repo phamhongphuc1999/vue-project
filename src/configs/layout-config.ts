@@ -4,6 +4,7 @@ export const ROUTE = {
   HOME: '/',
   WORD: '/word',
   CONFIG: '/config',
+  LOGIN: '/login',
 }
 
 export const LayoutConfig: Array<LayoutType> = [

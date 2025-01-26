@@ -11,5 +11,7 @@
   "theme": {
     "light": "Sáng",
     "dark": "Tối"
-  }
+  },
+  "username": "Tên đăng nhập",
+  "password": "Mật khẩu"
 }

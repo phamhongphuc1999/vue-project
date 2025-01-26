@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { INVENTORY_URL } from '@/configs/constance'
+import { WORD_APP_URL } from '@/configs/constance'
 import type { AxiosRequestConfig, AxiosResponse } from 'axios'
 import axios from 'axios'
 
@@ -47,4 +47,4 @@ export default class ApiQuery {
   }
 }
 
-export const inventoryQuery = new ApiQuery(INVENTORY_URL)
+export const wordQuery = new ApiQuery(WORD_APP_URL)
