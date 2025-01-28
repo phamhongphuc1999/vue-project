@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { WORD_APP_URL } from '@/configs/constance'
 import type { AxiosRequestConfig, AxiosResponse } from 'axios'
 import axios from 'axios'
 
@@ -10,8 +9,8 @@ function responseBody<T>(res: AxiosResponse<T>) {
 }
 
 export default class ApiQuery {
-  root: string
-  config: AxiosRequestConfig
+  protected root: string
+  protected config: AxiosRequestConfig
 
   constructor(rootUrl: string, config?: AxiosRequestConfig) {
     this.root = rootUrl
@@ -46,5 +45,3 @@ export default class ApiQuery {
       .then<T>(responseBody)
   }
 }
-
-export const wordQuery = new ApiQuery(WORD_APP_URL)

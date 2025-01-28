@@ -10,7 +10,7 @@ const router = createRouter({
     { path: ROUTE.WORD, name: 'word', component: () => import('../pages/WordApp/WordPage.vue') },
     { path: `${ROUTE.WORD}/:id`, name: 'detail-word', component: WordDetailPage },
     { path: ROUTE.CONFIG, name: 'config', component: () => import('../pages/ConfigPage.vue') },
-    { path: ROUTE.LOGIN, name: 'login', component: () => import('../pages/LoginPage.vue') },
+    { path: ROUTE.LOGIN, name: 'login', component: () => import('../pages/WordApp/LoginPage.vue') },
   ],
 })
 

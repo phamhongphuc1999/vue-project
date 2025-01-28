@@ -64,7 +64,7 @@ export type BaseApiType<T = any> = {
   data: T
 }
 
-export type LoginApiType = BaseApiType<{ token: string }>
+export type LoginApiType = BaseApiType<{ token: string; expireDate: string }>
 export type CategoryApiType = BaseApiType<Array<CategoryType>>
 export type PairApiType = BaseApiType<Array<PairType>>
 /*end api types*/

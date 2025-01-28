@@ -2,7 +2,7 @@
 import { LS } from '@/configs/constance'
 import type { LoginApiType } from '@/global'
 import useLocalTranslate from '@/hooks/useLocalTranslate'
-import { wordQuery } from '@/services/api-query'
+import { wordQuery } from '@/services/word-query'
 import useUserStore from '@/stores/user-store'
 import { Form, type FormSubmitEvent } from '@primevue/forms'
 import { zodResolver } from '@primevue/forms/resolvers/zod'
@@ -34,7 +34,9 @@ async function onFormSubmit(event: FormSubmitEvent) {
       const password = states['password'].value
       const data = await wordQuery.post<LoginApiType>('/user/login', { username, password })
       const accessToken = data.data.token
+      const expire = data.data.expireDate
       localStorage.setItem(LS.ACCESS_TOKEN, accessToken)
+      localStorage.setItem(LS.TOKEN_EXPIRE, expire)
       userStore.setAccessToken(accessToken)
       router.push('/word')
     } catch (error) {

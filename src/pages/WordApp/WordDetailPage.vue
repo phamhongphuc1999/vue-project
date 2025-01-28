@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ROUTE } from '@/configs/layout-config'
-import type { PairApiType } from '@/global'
-import useAuthorizedApi from '@/hooks/useAuthorizedApi'
+import useAuthorizedWordApi from '@/hooks/useAuthorizedWordApi'
 import useLocalTranslate from '@/hooks/useLocalTranslate'
 import useWordStore from '@/stores/word-store'
 import PairDetailView from '@/view/WordPage/PairDetailView.vue'
@@ -10,7 +9,7 @@ import { watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 
 const { t } = useLocalTranslate()
-const { authorizedApi } = useAuthorizedApi()
+const { authorizedApi } = useAuthorizedWordApi()
 const wordStore = useWordStore()
 const route = useRoute()
 const categoryId = route.params['id'] as string | undefined
@@ -19,7 +18,7 @@ watchEffect(async () => {
   if (authorizedApi && categoryId) {
     const _checkData = categoryId ? wordStore.pairs[parseInt(categoryId)] : undefined
     if (!_checkData) {
-      const data = await authorizedApi.get<PairApiType>(`/category/pairs?categoryId=${categoryId}`)
+      const data = await authorizedApi.getDetailPairs(categoryId)
       wordStore.updatePairs(parseInt(categoryId), data.data)
     }
   }

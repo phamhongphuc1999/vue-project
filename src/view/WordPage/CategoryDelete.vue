@@ -1,18 +1,18 @@
 <script lang="ts" setup>
-import type { CategoryApiType, CategoryType } from '@/global'
-import useAuthorizedApi from '@/hooks/useAuthorizedApi'
+import type { CategoryType } from '@/global'
+import useAuthorizedWordApi from '@/hooks/useAuthorizedWordApi'
 import useWordStore from '@/stores/word-store'
 
 const props = defineProps<{ item: CategoryType; onClose: () => void }>()
 
-const { authorizedApi } = useAuthorizedApi()
+const { authorizedApi } = useAuthorizedWordApi()
 const wordStore = useWordStore()
 
 async function onDeleteClick() {
   try {
     if (authorizedApi) {
-      await authorizedApi.del<boolean>(`/category?categoryId=${props.item.id}`)
-      const categories = await authorizedApi.get<CategoryApiType>('/category')
+      await authorizedApi.deleteCategory(props.item.id)
+      const categories = await authorizedApi.getCategories()
       wordStore.setCategories(categories.data)
     }
     props.onClose()

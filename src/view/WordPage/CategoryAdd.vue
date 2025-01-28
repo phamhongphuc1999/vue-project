@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import type { CategoryApiType, PairBaseType } from '@/global'
-import useAuthorizedApi from '@/hooks/useAuthorizedApi'
+import type { PairBaseType } from '@/global'
+import useAuthorizedWordApi from '@/hooks/useAuthorizedWordApi'
 import useWordStore from '@/stores/word-store'
 import { Dialog } from 'primevue'
 import { ref } from 'vue'
 import { uuid } from 'vue-uuid'
 
 const isOpen = ref<boolean>(false)
-const { authorizedApi } = useAuthorizedApi()
+const { authorizedApi } = useAuthorizedWordApi()
 const wordStore = useWordStore()
 const categoryTitle = ref('')
 const pairs = ref<{ [id: string]: PairBaseType }>({})
@@ -23,11 +23,11 @@ function addNewPair() {
 async function onAddClick() {
   const check = categoryTitle.value.length > 0 && Object.values(pairs.value).length > 0
   if (authorizedApi && check) {
-    await authorizedApi.post('/category', {
+    await authorizedApi.addCategory({
       title: categoryTitle.value,
       pairs: Object.values(pairs.value),
     })
-    const categories = await authorizedApi.get<CategoryApiType>('/category')
+    const categories = await authorizedApi.getCategories()
     wordStore.setCategories(categories.data)
   }
 }
