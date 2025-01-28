@@ -17,6 +17,7 @@ function addNewPair() {
   if (tempPair.value.en.length > 0 && tempPair.value.vi.length > 0) {
     const id = uuid.v1()
     pairs.value[id] = { id, en: tempPair.value.en, vi: tempPair.value.vi }
+    tempPair.value = { en: '', vi: '' }
   }
 }
 

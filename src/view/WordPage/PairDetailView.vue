@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import type { CheckDataType } from '@/global'
+import type { CheckDataType, PairType } from '@/global'
+import { randomSubGroup } from '@/services'
 import useWordStore from '@/stores/word-store'
 import { twMerge } from 'tailwind-merge'
 import { computed, ref } from 'vue'
@@ -56,11 +57,21 @@ function onCheckClick() {
 function onDetailClick() {
   isDetail.value = !isDetail.value
 }
+
+const randomPairs = computed(() => {
+  const _pairs = Object.values(pairs.value)
+  const _array = randomSubGroup(_pairs.length)
+  const result: Array<PairType> = []
+  for (const index of _array) {
+    result.push(_pairs[index - 1])
+  }
+  return result
+})
 </script>
 
 <template>
   <div class="flex flex-col gap-2 border-[1px] border-gray-50 p-[1rem]">
-    <div v-for="item in Object.values(pairs)" :key="item.id">
+    <div v-for="item in randomPairs" :key="item.id">
       <div class="flex items-center gap-2">
         <p>{{ item.vi }}</p>
         <input
