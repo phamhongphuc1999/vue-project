@@ -44,11 +44,17 @@ export interface CategoryType {
   displayName: string
   username: string
 }
-export interface PairType {
-  id: number
+export interface PairBaseType {
+  id: number | string
   en: string
   vi: string
+}
+export interface PairType extends PairBaseType {
+  id: number
   categoryId: number
+}
+export interface UpdatingPairType extends PairBaseType {
+  mode: 'new' | 'delete' | 'retain'
 }
 /*end word types*/
 

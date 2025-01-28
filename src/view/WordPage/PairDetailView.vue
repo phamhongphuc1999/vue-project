@@ -5,8 +5,8 @@ import { twMerge } from 'tailwind-merge'
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
-const wordStore = useWordStore()
 const route = useRoute()
+const wordStore = useWordStore()
 const categoryId = route.params['id'] as string | undefined
 
 const isDetail = ref<boolean>(false)
