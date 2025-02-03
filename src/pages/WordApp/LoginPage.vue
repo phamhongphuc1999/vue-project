@@ -1,15 +1,20 @@
 <script setup lang="ts">
-import { LS } from '@/configs/constance'
+import { APP_NAME, LS } from '@/configs/constance'
 import type { LoginApiType } from '@/global'
 import useLocalTranslate from '@/hooks/useLocalTranslate'
 import { wordQuery } from '@/services/word-query'
 import useUserStore from '@/stores/user-store'
 import { Form, type FormSubmitEvent } from '@primevue/forms'
 import { zodResolver } from '@primevue/forms/resolvers/zod'
+import { useHead } from '@unhead/vue'
 import { Button, InputText, Message } from 'primevue'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { z } from 'zod'
+
+useHead({
+  title: `${APP_NAME} | Login`,
+})
 
 const { t } = useLocalTranslate()
 

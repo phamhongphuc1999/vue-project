@@ -3,10 +3,15 @@ import { ROUTE } from '@/configs/layout-config'
 import useAuthorizedWordApi from '@/hooks/useAuthorizedWordApi'
 import useLocalTranslate from '@/hooks/useLocalTranslate'
 import useWordStore from '@/stores/word-store'
-import PairDetailView from '@/view/WordPage/PairDetailView.vue'
+import PairDetailView from '@/view/WordPage/PairDetail/PairDetailView.vue'
+import { useHead } from '@unhead/vue'
 import { Breadcrumb } from 'primevue'
 import { watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
+
+useHead({
+  title: 'Word App | Detail',
+})
 
 const { t } = useLocalTranslate()
 const { authorizedApi } = useAuthorizedWordApi()

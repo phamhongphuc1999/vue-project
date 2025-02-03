@@ -1,3 +1,4 @@
+import { createHead } from '@unhead/vue'
 import { createPinia } from 'pinia'
 import 'primeicons/primeicons.css'
 import PrimeVue from 'primevue/config'
@@ -25,5 +26,7 @@ app.use(PrimeVue, {
     },
   },
 })
+const head = createHead()
+app.use(head)
 
 app.mount('#app')

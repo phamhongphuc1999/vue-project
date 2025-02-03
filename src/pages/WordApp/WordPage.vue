@@ -5,10 +5,15 @@ import useAuthorizedWordApi from '@/hooks/useAuthorizedWordApi'
 import useLocalTranslate from '@/hooks/useLocalTranslate'
 import useWordStore from '@/stores/word-store'
 import CategoryView from '@/view/WordPage/CategoryView.vue'
+import { useHead } from '@unhead/vue'
 import moment from 'moment'
 import Breadcrumb from 'primevue/breadcrumb'
 import { watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
+
+useHead({
+  title: `Word App | Home`,
+})
 
 const { t } = useLocalTranslate()
 const { authorizedApi } = useAuthorizedWordApi()

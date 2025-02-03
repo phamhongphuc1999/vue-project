@@ -29,11 +29,20 @@ export type LayoutType = {
 }
 
 export type CheckDataType = {
+  numberOfOks: number
+  oks: { [id: number]: boolean }
   numberOfErrors: number
+  errors: { [id: number]: boolean }
   numberOfRemaining: number
+  remaining: { [id: number]: boolean }
   detail: { [id: number]: boolean }
   description: string
   isOk: boolean
+}
+
+export type AttemptDataType = {
+  times: number
+  analysis: { [time: number]: { time: number; errors: number; remains: number; oks: number } }
 }
 
 /*word types*/
