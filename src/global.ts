@@ -2,6 +2,11 @@
 export type ThemeMode = 'dark' | 'light'
 export type LanguageType = 'en' | 'vi'
 
+export interface PaginationType {
+  pageNumber: number
+  pageSize: number
+}
+
 export interface Supplier {
   id: number
   name: string
@@ -53,6 +58,11 @@ export interface CategoryType {
   displayName: string
   username: string
 }
+interface _CategoryFilterType extends PaginationType {
+  id: number
+  title: string
+}
+export type CategoryFilterType = Partial<_CategoryFilterType>
 export interface PairBaseType {
   id: number | string
   en: string
@@ -74,6 +84,6 @@ export type BaseApiType<T = any> = {
 }
 
 export type LoginApiType = BaseApiType<{ token: string; expireDate: string }>
-export type CategoryApiType = BaseApiType<Array<CategoryType>>
+export type CategoryApiType = BaseApiType<{ total: number; items: Array<CategoryType> }>
 export type PairApiType = BaseApiType<Array<PairType>>
 /*end api types*/

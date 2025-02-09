@@ -23,7 +23,8 @@ const router = useRouter()
 watchEffect(async () => {
   if (authorizedApi) {
     const categories = await authorizedApi.getCategories()
-    wordStore.setCategories(categories.data)
+    const { total, items } = categories.data
+    wordStore.setCategories(items, total)
   }
 })
 
