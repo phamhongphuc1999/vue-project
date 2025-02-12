@@ -22,7 +22,9 @@ const router = useRouter()
 
 watchEffect(async () => {
   if (authorizedApi) {
-    const categories = await authorizedApi.getCategories()
+    const query = router.currentRoute.value.query
+    const page = (query['page'] ?? 0) as number
+    const categories = await authorizedApi.getCategories({ pageNumber: page })
     const { total, items } = categories.data
     wordStore.setCategories(items, total)
   }

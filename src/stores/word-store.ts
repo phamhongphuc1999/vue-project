@@ -12,7 +12,7 @@ const useWordStore = defineStore('word', {
       const result: { [id: number]: CategoryType } = {}
       for (const category of categories) result[category.id] = category
       this.categories = result
-      this.totalCategories = totalCategories
+      if (totalCategories >= 0) this.totalCategories = totalCategories
     },
     updatePairs(categoryId: number, pairs: Array<PairType>) {
       const result: { [pairId: number]: PairType } = {}

@@ -29,7 +29,7 @@ async function onAddClick() {
       pairs: Object.values(pairs.value),
     })
     const categories = await authorizedApi.getCategories()
-    wordStore.setCategories(categories.data)
+    wordStore.setCategories(categories.data.items, categories.data.total)
   }
 }
 </script>

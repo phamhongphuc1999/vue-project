@@ -75,11 +75,11 @@ async function onConfirmClick() {
     if (categoryTitle.value.length > 0 && Object.values(wordCheck).length > 0 && authorizedApi) {
       await authorizedApi.updateCategory(item.id, {
         title: categoryTitle.value,
-        pairs: Object.values(newPairs.value),
+        newPairs: Object.values(newPairs.value),
         removedIds: Object.values(removedPairs.value).map((item) => item.id),
       })
       const categories = await authorizedApi.getCategories()
-      wordStore.setCategories(categories.data)
+      wordStore.setCategories(categories.data.items, categories.data.total)
       onClose()
     }
   } catch (error) {

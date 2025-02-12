@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ROUTE } from '@/configs/layout-config'
 import useWordStore from '@/stores/word-store'
-import { Dialog } from 'primevue'
+import { Dialog, Paginator, type PageState } from 'primevue'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import CategoryAdd from './CategoryAdd.vue'
@@ -15,6 +15,10 @@ const deleteVisibleId = ref<number | null>(null)
 
 function onRowClick(id: number) {
   router.push(`${ROUTE.WORD}/${id}`)
+}
+
+async function onPageChange(event: PageState) {
+  router.replace({ query: { page: event.page } })
 }
 </script>
 
@@ -81,6 +85,9 @@ function onRowClick(id: number) {
         >
           <CategoryDelete :item="item" :onClose="() => (deleteVisibleId = null)" />
         </Dialog>
+      </div>
+      <div v-if="wordStore.totalCategories > 0">
+        <Paginator :rows="10" :totalRecords="wordStore.totalCategories" @page="onPageChange" />
       </div>
     </div>
   </div>

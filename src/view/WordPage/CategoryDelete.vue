@@ -13,7 +13,7 @@ async function onDeleteClick() {
     if (authorizedApi) {
       await authorizedApi.deleteCategory(props.item.id)
       const categories = await authorizedApi.getCategories()
-      wordStore.setCategories(categories.data)
+      wordStore.setCategories(categories.data.items, categories.data.total)
     }
     props.onClose()
   } catch (error) {
