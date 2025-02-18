@@ -57,6 +57,8 @@ export interface CategoryType {
   userId: number
   displayName: string
   username: string
+  createAt: string
+  updateAt: string
 }
 interface _CategoryFilterType extends PaginationType {
   id: number
