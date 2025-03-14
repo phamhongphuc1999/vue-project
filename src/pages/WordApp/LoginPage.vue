@@ -18,6 +18,7 @@ useHead({
 
 const { t } = useLocalTranslate()
 
+const isShowPassword = ref(false)
 const initialValues = ref({ username: '', password: '' })
 const userStore = useUserStore()
 const router = useRouter()
@@ -52,31 +53,72 @@ async function onFormSubmit(event: FormSubmitEvent) {
 </script>
 
 <template>
-  <div class="card flex justify-center">
-    <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit">
-      <div class="flex flex-col gap-1">
-        <div class="flex items-center gap-2">
-          <div class="w-[180px]">
-            <p>{{ t('username') }}</p>
-          </div>
-          <InputText name="username" type="text" :placeholder="t('username')" fluid />
+  <div class="flex flex-col items-center gap-2">
+    <p class="text-[48px] font-[500] text-[#FFFFFF]">Sign In</p>
+    <div class="mt-[77px]">
+      <div
+        class="flex h-[60px] w-[400px] cursor-pointer items-center justify-center gap-[8px] rounded-[18px] border-[4px] border-[#30303D]"
+      >
+        <i class="pi pi-google" style="font-size: 1rem"></i>
+        <p>Continue with Google</p>
+      </div>
+      <div
+        class="mt-[1rem] flex h-[60px] w-[400px] cursor-pointer items-center justify-center gap-[8px] rounded-[18px] border-[4px] border-[#30303D]"
+      >
+        <i class="pi pi-facebook" style="font-size: 1rem"></i>
+        <p>Continue with Facebook</p>
+      </div>
+    </div>
+    <p class="my-[1rem]">or</p>
+    <div class="w-[400px]">
+      <Form
+        v-slot="$form"
+        :resolver="resolver"
+        :initialValues="initialValues"
+        @submit="onFormSubmit"
+      >
+        <div class="form h-[60px]">
+          <InputText
+            id="username"
+            class="form__input"
+            name="username"
+            type="text"
+            fluid
+            autocomplete="off"
+          />
+          <label for="username" class="form__label">{{ t('username') }}</label>
         </div>
         <Message v-if="$form.username?.invalid" severity="error" size="small" variant="simple">{{
           $form.username.error?.message
         }}</Message>
-      </div>
-      <div class="mt-2 flex flex-col gap-1">
-        <div class="flex items-center gap-2">
-          <div class="w-[180px]">
-            <p>{{ t('password') }}</p>
+        <div class="form mt-[1rem] h-[60px]">
+          <InputText
+            id="password"
+            class="form__input"
+            name="password"
+            v-bind:type="isShowPassword ? 'text' : 'password'"
+            fluid
+            autocomplete="off"
+          />
+          <div>
+            <i
+              class="pi form__eye"
+              :class="isShowPassword ? 'pi-eye' : 'pi-eye-slash'"
+              @click="isShowPassword = !isShowPassword"
+            ></i>
           </div>
-          <InputText name="password" type="text" :placeholder="t('password')" fluid />
+          <label for="username" class="form__label">{{ t('password') }}</label>
         </div>
         <Message v-if="$form.password?.invalid" severity="error" size="small" variant="simple">{{
           $form.password.error?.message
         }}</Message>
-      </div>
-      <Button type="submit" severity="secondary" label="Submit" />
-    </Form>
+        <Button
+          class="mt-[1rem] h-[60px] w-full rounded-[16px] bg-[#B72EB2]"
+          type="submit"
+          severity="secondary"
+          label="Sign In"
+        />
+      </Form>
+    </div>
   </div>
 </template>

@@ -85,9 +85,15 @@ export type BaseApiType<T = any> = {
   data: T
 }
 
+export type AllPairResultType = {
+  categoryId: number
+  categoryTitle: string
+  pairs: Array<PairType>
+}
+
 export type LoginApiType = BaseApiType<{ token: string; expireDate: string }>
 export type CategoryApiType = BaseApiType<{ total: number; items: Array<CategoryType> }>
-export type PairApiType = BaseApiType<Array<PairType>>
+export type PairApiType = BaseApiType<AllPairResultType>
 export type UpdateCategoryType = BaseApiType<{
   title: string
   newPairs: Array<PairBaseType>

@@ -24,8 +24,8 @@ watchEffect(() => {
 
 <template>
   <HeaderView />
-  <CommonContainer class="mb-[50px] flex h-full min-h-[calc(100vh-55px)] pt-[100px]">
-    <div><RouterView /></div>
+  <CommonContainer class="mb-[50px] h-full min-h-[calc(100vh-55px)] pt-[100px]">
+    <RouterView />
   </CommonContainer>
   <FooterView />
 </template>

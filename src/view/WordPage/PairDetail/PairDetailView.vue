@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { AttemptDataType, CheckDataType, PairType } from '@/global'
-import { randomSubGroup } from '@/services'
+import { getRandomArbitrary, randomSubGroup } from '@/services'
 import useWordStore from '@/stores/word-store'
 import { useInterval } from '@vueuse/core'
 import { twMerge } from 'tailwind-merge'
@@ -24,7 +24,6 @@ const route = useRoute()
 const wordStore = useWordStore()
 const categoryId = route.params['id'] as string | undefined
 
-const isDetail = ref<boolean>(false)
 const result = ref<{ [id: number]: string }>({})
 const checkData = ref<CheckDataType>(defaultCheckData)
 const isReveal = ref(false)
@@ -33,7 +32,12 @@ const randomPairs = ref<Array<PairType>>([])
 const { counter, reset, pause, resume } = useInterval(1000, { controls: true, immediate: false })
 
 const pairs = computed(() => {
-  return categoryId ? wordStore.pairs[parseInt(categoryId)] : {}
+  if (categoryId) {
+    const _pairs = wordStore.pairs
+    const detail = _pairs[parseInt(categoryId)]
+    if (detail) return detail.pairs
+  }
+  return {}
 })
 
 function onCheckClick() {
@@ -54,9 +58,12 @@ function onCheckClick() {
       } else if (resultValue != item.en) {
         numberOfErrors++
         errorDetail[item.id] = true
+        result.value[item.id] = ''
       } else {
+        const _random = getRandomArbitrary(1, 10)
         numberOfOks++
         okDetail[item.id] = true
+        if (_random <= 1) result.value[item.id] = ''
       }
     } else {
       numberOfRemaining++
@@ -84,10 +91,7 @@ function onCheckClick() {
     errors: numberOfErrors,
     remains: numberOfRemaining,
   }
-  attempt.value = {
-    times: currentTime + 1,
-    analysis: currentAnalysis,
-  }
+  attempt.value = { times: currentTime + 1, analysis: currentAnalysis }
 }
 
 function onResetClick() {
@@ -103,10 +107,6 @@ function onResetClick() {
     _random.push(_pairs[index - 1])
   }
   randomPairs.value = _random
-}
-
-function onDetailClick() {
-  isDetail.value = !isDetail.value
 }
 
 function onReveal() {
@@ -149,7 +149,10 @@ watchEffect(() => {
       >
         <p>{{ item.vi }}</p>
         <input autocomplete="off" class="pair-input" v-model="result[item.id]" />
-        <div v-if="isReveal && checkData.errors[item.id]" class="flex items-center gap-2">
+        <div
+          v-if="isReveal && (checkData.errors[item.id] || checkData.remaining[item.id])"
+          class="flex items-center gap-2"
+        >
           <i class="pi pi-arrow-right" />
           <p>{{ pairs[item.id].en }}</p>
         </div>
@@ -172,13 +175,7 @@ watchEffect(() => {
       Reset
     </button>
     <button
-      :onclick="onDetailClick"
-      class="border-gray-[100] rounded-[8px] border-[1px] px-[8px] py-[4px]"
-    >
-      Check detail ({{ isDetail }})
-    </button>
-    <button
-      v-if="checkData.numberOfErrors > 0"
+      v-if="checkData.numberOfErrors > 0 || checkData.numberOfRemaining > 0"
       :onclick="onReveal"
       class="border-gray-[100] rounded-[8px] border-[1px] px-[8px] py-[4px]"
     >
@@ -191,9 +188,5 @@ watchEffect(() => {
     <p :class="twMerge(checkData.isOk ? 'text-[green]' : 'text-[red]')">
       {{ checkData.description }}
     </p>
-    <div v-if="isDetail">
-      <p>Number of errors: {{ checkData.numberOfErrors }}</p>
-      <p>Number of remaining: {{ checkData.numberOfRemaining }}</p>
-    </div>
   </div>
 </template>

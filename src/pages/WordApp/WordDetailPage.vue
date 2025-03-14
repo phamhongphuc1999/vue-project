@@ -6,7 +6,7 @@ import useWordStore from '@/stores/word-store'
 import PairDetailView from '@/view/WordPage/PairDetail/PairDetailView.vue'
 import { useHead } from '@unhead/vue'
 import { Breadcrumb } from 'primevue'
-import { watchEffect } from 'vue'
+import { computed, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 
 useHead({
@@ -28,10 +28,19 @@ watchEffect(async () => {
     }
   }
 })
+
+const displayName = computed(() => {
+  if (categoryId) {
+    const categories = wordStore.categories
+    const category = categories[parseInt(categoryId)]
+    return category ? category.displayName : categoryId
+  }
+  return categoryId
+})
 </script>
 
 <template>
-  <Breadcrumb :model="[{ label: t('page.word'), url: ROUTE.WORD }, { label: categoryId }]" />
+  <Breadcrumb :model="[{ label: t('page.word'), url: ROUTE.WORD }, { label: displayName }]" />
   <p>
     The language switching feature is disabled in WordApp, instead, the language is showed English
     automatically

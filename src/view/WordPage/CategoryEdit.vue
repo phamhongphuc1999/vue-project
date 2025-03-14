@@ -16,7 +16,7 @@ const newPairs = ref<{ [id: string]: PairBaseType }>({})
 const tempPair = ref<Omit<PairBaseType, 'id'>>({ en: '', vi: '' })
 
 const updatedPairs = computed<{ [id: string]: UpdatingPairType }>(() => {
-  const oldPairs = wordStore.pairs[item.id]
+  const oldPairs = wordStore.pairs[item.id].pairs
   if (oldPairs) {
     const result: { [id: string]: UpdatingPairType } = {}
     for (const item of Object.values(oldPairs)) {
@@ -60,7 +60,7 @@ function keepPair(item: UpdatingPairType) {
 async function onConfirmClick() {
   try {
     const wordCheck: { [key: string]: boolean } = {}
-    const oldPairs = wordStore.pairs[item.id]
+    const oldPairs = wordStore.pairs[item.id].pairs
     if (oldPairs) {
       for (const item of Object.values(oldPairs)) {
         wordCheck[item.en] = true
