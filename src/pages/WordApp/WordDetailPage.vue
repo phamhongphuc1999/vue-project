@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { ROUTE } from '@/configs/layout-config'
+import AppBreadcrumb from '@/components/AppBreadcrumb.vue'
 import useAuthorizedWordApi from '@/hooks/useAuthorizedWordApi'
 import useLocalTranslate from '@/hooks/useLocalTranslate'
 import useWordStore from '@/stores/word-store'
 import PairDetailView from '@/view/WordPage/PairDetail/PairDetailView.vue'
 import { useHead } from '@unhead/vue'
-import { Breadcrumb } from 'primevue'
 import { computed, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -33,14 +32,19 @@ const displayName = computed(() => {
   if (categoryId) {
     const categories = wordStore.categories
     const category = categories[parseInt(categoryId)]
-    return category ? category.displayName : categoryId
+    return category ? category.title : categoryId
   }
-  return categoryId
+  return ''
 })
 </script>
 
 <template>
-  <Breadcrumb :model="[{ label: t('page.word'), url: ROUTE.WORD }, { label: displayName }]" />
+  <AppBreadcrumb
+    :items="[
+      { id: 'home', label: t('page.home'), to: '/word' },
+      { id: displayName, label: displayName },
+    ]"
+  />
   <p>
     The language switching feature is disabled in WordApp, instead, the language is showed English
     automatically

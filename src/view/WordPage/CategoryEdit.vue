@@ -1,22 +1,23 @@
 <script setup lang="ts">
-import { type CategoryType, type PairBaseType, type UpdatingPairType } from '@/global'
+import { type PairBaseType, type UpdatingPairType } from '@/global'
 import useAuthorizedWordApi from '@/hooks/useAuthorizedWordApi'
 import useWordStore from '@/stores/word-store'
 import { twMerge } from 'tailwind-merge'
 import { computed, ref, watchEffect } from 'vue'
 import { uuid } from 'vue-uuid'
 
-const { item, onClose } = defineProps<{ item: CategoryType; onClose: () => void }>()
+const { id, onClose } = defineProps<{ id: number; onClose: () => void }>()
 
 const { authorizedApi } = useAuthorizedWordApi()
 const wordStore = useWordStore()
+const item = wordStore.categories[id]
 const categoryTitle = ref(item.title)
 const removedPairs = ref<{ [id: string]: PairBaseType }>({})
 const newPairs = ref<{ [id: string]: PairBaseType }>({})
 const tempPair = ref<Omit<PairBaseType, 'id'>>({ en: '', vi: '' })
 
 const updatedPairs = computed<{ [id: string]: UpdatingPairType }>(() => {
-  const oldPairs = wordStore.pairs[item.id].pairs
+  const oldPairs = wordStore.pairs[item.id]?.pairs
   if (oldPairs) {
     const result: { [id: string]: UpdatingPairType } = {}
     for (const item of Object.values(oldPairs)) {

@@ -11,9 +11,7 @@ import Breadcrumb from 'primevue/breadcrumb'
 import { watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 
-useHead({
-  title: `Word App | Home`,
-})
+useHead({ title: 'Word App | Home' })
 
 const { t } = useLocalTranslate()
 const { authorizedApi } = useAuthorizedWordApi()

@@ -50,6 +50,12 @@ export type AttemptDataType = {
   analysis: { [time: number]: { time: number; errors: number; remains: number; oks: number } }
 }
 
+export type BreadcrumbItemType = {
+  id: string
+  label: string
+  to?: string
+}
+
 /*word types*/
 export interface CategoryType {
   id: number
